@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="app.css">
+    <title>Document</title>
+</head>
+
+<body ng-app="MyApp" layout="column">
+    <md-toolbar>
+        <h1>Angular Material Starter</h1>
+    </md-toolbar>
+    <div class="container" layout="row" flex>
+        <md-sidenav md-is-locked-open="true"  class="md-whiteframe-4dp">
+            <md-list>
+                <md-list-item>
+                    Home
+                </md-list-item>
+                <md-list-item>
+                    About
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content id="content" flex>
+            Content Here!
+        </md-content>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script>
+        angular.module('MyApp', ['ngMaterial'])
+            .run(function () {
+                console.log("MyApp is ready!");
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "angular-material-introduction",
+  "version": "1.0.0",
+  "description": "Angular Material is an Angular-native, UI component framework from Google. It is a reference implementation of Google's Material Design and provides >30 UI components and services essential for mobile and desktop AngularJS applications.",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-material": "^1.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liminjun/angular-material-introduction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liminjun/angular-material-introduction/issues"
+  },
+  "homepage": "https://github.com/liminjun/angular-material-introduction#readme"
+}
