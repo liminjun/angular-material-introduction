@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('users')
-        .service('userService', ['$q', UserService]);
+        .service('userService', ['$q','AppConfig','$http', UserService]);
 
     /**
      * Users DataService
@@ -12,7 +12,7 @@
      * @returns {{loadAll: Function}}
      * @constructor
      */
-    function UserService($q) {
+    function UserService($q,AppConfig,$http) {
         var users = [
             {
                 name: '李敏军',
@@ -50,7 +50,21 @@
         return {
             loadAllUsers: function () {
                 // Simulate async nature of real remote calls
-                return $q.when(users);
+                return $http({
+                    url:AppConfig.apiPath+"blog",
+                    method:"GET"
+                });
+            },
+            addUser:function(name,content,avatar){
+                return $http({
+                    url:AppConfig.apiPath+"blog",
+                    method:"PATCH",
+                    data:{
+                        name:name,
+                        content:content,
+                        avatar:avatar
+                    }
+                });
             }
         };
     }

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('users')
-        .controller('UserController', ['userService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', function (userService, $mdSidenav, $mdBottomSheet, $timeout, $log) {
+        .controller('UserController', ['userService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log','$mdToast', function (userService, $mdSidenav, $mdBottomSheet, $timeout, $log,$mdToast) {
             var self = this;
 
             self.selected = null;
@@ -11,12 +11,30 @@
             self.toggleList = toggleUsersList;
             self.makeContact = makeContact;
 
-            userService.loadAllUsers().then(function (users) {
-                self.users = users;
-                self.selected = users[0];
+            userService.loadAllUsers().then(function (response) {
+                debugger;
+                self.users = response.data;
+                self.selected = response.data[0];
 
             });
 
+            //添加联系人
+            self.addUser = function () {
+                var name = self.name;
+                var content = self.content;
+                var avatar = "svg-6";
+                userService.addUser(name, content, avatar).then(function (response) {
+                    debugger;
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('创建用户成功')
+                            .hideDelay(3000)
+                    );
+                },
+                    function () {
+
+                    });
+            }
 
 
             function toggleUsersList() {

@@ -38,10 +38,34 @@
             <md-button class="share" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="Share with {{ul.selected.name}}">
                 <md-icon md-svg-icon="share"></md-icon>
             </md-button>
+
+
+            <div layout="column" ng-cloak class="md-form">
+                <div>
+                    <md-input-container>
+                        <label>名称</label>
+                        <input ng-model="ul.name">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>备注</label>
+                        <input ng-model="ul.content" type="text">
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-button type="submit" ng-click="ul.addUser();">Submit</md-button>
+                </div>
+
+            </div>
+
+
         </md-content>
+
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
@@ -51,26 +75,8 @@
     <script src="./users/users.controller.js"></script>
     <script src="./users/users.service.js"></script>
 
-    <script type="text/javascript">
-        angular
-            .module('MyApp', ['ngMaterial', 'users'])
-            .config(function ($mdThemingProvider, $mdIconProvider) {
-
-                $mdIconProvider
-                    .defaultIconSet("./assets/svg/avatars.svg", 128)
-                    .icon("menu", "./assets/svg/menu.svg", 24)
-                    .icon("share", "./assets/svg/share.svg", 24)
-                    .icon("google_plus", "./assets/svg/google_plus.svg", 512)
-                    .icon("hangouts", "./assets/svg/hangouts.svg", 512)
-                    .icon("twitter", "./assets/svg/twitter.svg", 512)
-                    .icon("phone", "./assets/svg/phone.svg", 512);
-
-                $mdThemingProvider.theme('default')
-                    .primaryPalette('brown')
-                    .accentPalette('red');
-
-            });
-    </script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="app.config.js"></script>
 </body>
 
 </html>
