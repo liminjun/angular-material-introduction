@@ -6,27 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="assets/app.css">
     <title>Document</title>
 </head>
 
-<body ng-app="MyApp" layout="column">
-    <md-toolbar>
-        <h1>Angular Material Starter</h1>
+<body ng-app="MyApp" layout="column" ng-controller="UserController as ul">
+    <md-toolbar layout="row">
+        <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <h1>Angular Material - Starter App</h1>
     </md-toolbar>
+
     <div class="container" layout="row" flex>
-        <md-sidenav md-is-locked-open="true"  class="md-whiteframe-4dp">
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
             <md-list>
-                <md-list-item>
-                    Home
+                <md-list-item ng-repeat="u in ul.users">
+                    <md-button ng-click="ul.selectUser(u)" ng-class="{'selected' : it === ul.selected }">
+                        <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon>
+                        {{u.name}}
+                    </md-button>
                 </md-list-item>
-                <md-list-item>
-                    About
-                </md-list-item>
+
             </md-list>
         </md-sidenav>
         <md-content id="content" flex>
-            Content Here!
+            <md-icon md-svg-src="{{ul.selected.avatar}}"></md-icon>
+            <h2>{{ul.selected.name}}</h2>
+            <p>{{ul.selected.content}}</p>
+
+            <md-button class="share" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="Share with {{ul.selected.name}}">
+                <md-icon md-svg-icon="share"></md-icon>
+            </md-button>
         </md-content>
     </div>
 
@@ -35,10 +46,29 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
     <script src="node_modules/angular-material/angular-material.min.js"></script>
-    <script>
-        angular.module('MyApp', ['ngMaterial'])
-            .run(function () {
-                console.log("MyApp is ready!");
+
+    <script src="./users/users.module.js"></script>
+    <script src="./users/users.controller.js"></script>
+    <script src="./users/users.service.js"></script>
+
+    <script type="text/javascript">
+        angular
+            .module('MyApp', ['ngMaterial', 'users'])
+            .config(function ($mdThemingProvider, $mdIconProvider) {
+
+                $mdIconProvider
+                    .defaultIconSet("./assets/svg/avatars.svg", 128)
+                    .icon("menu", "./assets/svg/menu.svg", 24)
+                    .icon("share", "./assets/svg/share.svg", 24)
+                    .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                    .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                    .icon("twitter", "./assets/svg/twitter.svg", 512)
+                    .icon("phone", "./assets/svg/phone.svg", 512);
+
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('brown')
+                    .accentPalette('red');
+
             });
     </script>
 </body>
